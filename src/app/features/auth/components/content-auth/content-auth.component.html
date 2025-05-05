@@ -1,0 +1,126 @@
+<div class="all-forms">
+  <form
+    [class.register]="activeButton === 2"
+    [class.hidden]="activeButton !== 2"
+    (ngSubmit)="onSubmitRegister()"
+    [formGroup]="registerForm"
+  >
+    <div class="float-label">
+      <input type="text" placeholder="" formControlName="name" />
+      <label>Nome</label>
+      @if (registerForm.get('name')?.invalid &&
+      registerForm.get('name')?.touched) {
+      <span class="error">
+        @if (registerForm.get('name')?.errors?.['required']) { Nome obrigatório
+        } @else if (registerForm.get('name')?.errors?.['minlength']) { Mínimo 3
+        caracteres }
+      </span>
+      }
+    </div>
+    <div class="float-label">
+      <input type="email" placeholder="" formControlName="email" />
+      <label>E-mail</label>
+      @if (registerForm.get('email')?.invalid &&
+      registerForm.get('email')?.touched) {
+      <span class="error">
+        @if (registerForm.get('email')?.errors?.['required']) { E-mail
+        obrigatório } @else if (registerForm.get('email')?.errors?.['email']) {
+        Digite no formato {{ "'exemplo@email.com'" }} }
+      </span>
+      }
+    </div>
+    <div class="float-label">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder=""
+        formControlName="password"
+      />
+      <label>Senha</label>
+      <div class="password-eye" (click)="togglePasswordVisibility()">
+        @if (showPassword) {
+        <i>👁️</i>
+        } @else {
+        <i>👁️‍🗨️</i>
+        }
+      </div>
+      @if (registerForm.get('password')?.invalid &&
+      registerForm.get('password')?.touched) {
+      <span class="error">
+        @if (registerForm.get('password')?.errors?.['required']) { Senha
+        obrigatória } @else if
+        (registerForm.get('password')?.errors?.['minlength']) { Mínimo 6
+        caracteres }
+      </span>
+      }
+    </div>
+
+    <div class="conected">
+      <input type="checkbox" formControlName="keepConnected" />
+      <h4>Manter-me conectado</h4>
+    </div>
+    <span>
+      Ao continuar, estou de acordo com os
+      <a routerLink="/termos-e-privacidade">
+        Termos de uso e Aviso de privacidade
+      </a>
+      da HealthTrack.
+    </span>
+    <button type="submit" [disabled]="registerForm.invalid">
+      CONCORDAR E CADASTRAR
+    </button>
+  </form>
+
+  <form
+    [class.login]="activeButton === 1"
+    [class.hidden]="activeButton !== 1"
+    (ngSubmit)="onSubmitLogin()"
+    [formGroup]="loginForm"
+  >
+    <div class="float-label">
+      <input type="email" placeholder="" formControlName="email" />
+      <label>E-mail</label>
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+      <span class="error">
+        @if (loginForm.get('email')?.errors?.['required']) { E-mail obrigatório
+        } @else if (loginForm.get('email')?.errors?.['email']) { Digite no
+        formato {{ "'exemplo@email.com'" }}}
+      </span>
+      }
+    </div>
+    <div class="float-label">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder=""
+        formControlName="password"
+      />
+      <label>Senha</label>
+      <div class="password-eye" (click)="togglePasswordVisibility()">
+        @if (showPassword) {
+        <i>👁️</i>
+        } @else {
+        <i>👁️‍🗨️</i>
+        }
+      </div>
+      @if (loginForm.get('password')?.invalid &&
+      loginForm.get('password')?.touched) {
+      <span class="error">
+        @if (loginForm.get('password')?.errors?.['required']) { Senha
+        obrigatória }
+      </span>
+      }
+    </div>
+    <div class="conected">
+      <input type="checkbox" formControlName="keepConnected" />
+      <h4>Manter-me conectado</h4>
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid">ENTRAR</button>
+    <a routerLink="/forgot-password">Esqueceu sua senha?</a>
+    <span>
+      Ao continuar, estou de acordo com os
+      <a routerLink="/termos-e-privacidade">
+        Termos de uso e Aviso de privacidade
+      </a>
+      da HealthTrack.
+    </span>
+  </form>
+</div>

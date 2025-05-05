@@ -1,0 +1,64 @@
+@import "../../../../../styles/variables.scss";
+
+.auth {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+
+  .content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+      color: $color-semi-secundary;
+      overflow: hidden;
+      padding: 0px 108px;
+    }
+
+    .right-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0px 108px;
+      color: $color-semi-secundary;
+      text-align: center;
+      width: 640px;
+
+      h2 {
+        color: $color-secundary;
+        line-height: 1;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .auth {
+    gap: 80px;
+    .content {
+      .left-content {
+        padding: 0px 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .auth {
+    .content {
+      flex-direction: column;
+      align-items: center;
+
+      .right-content {
+        display: none;
+      }
+    }
+  }
+}

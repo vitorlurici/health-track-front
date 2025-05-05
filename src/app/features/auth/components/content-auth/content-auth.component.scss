@@ -1,0 +1,147 @@
+@import "../../../../../styles/variables.scss";
+
+.all-forms {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: transform 1s ease;
+    height: 452px;
+    position: relative;
+
+    &.hidden {
+      display: flex;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+
+      &.login {
+        transform: translateX(212px);
+      }
+      &.register {
+        transform: translateX(-212px);
+      }
+    }
+
+    .float-label {
+      position: relative;
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      gap: 12px;
+
+      input {
+        display: flex;
+        width: 100%;
+        padding: 8px 0px;
+        padding-right: 20px;
+        color: $color-secundary;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        border: none;
+        transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        border-bottom: 1px solid $color-semi-secundary;
+
+        &:focus {
+          border-bottom: 1px solid $color-primary;
+          outline: none;
+        }
+        &::placeholder {
+          color: transparent;
+        }
+
+        &:focus + label,
+        &:not(:placeholder-shown) + label {
+          margin-top: 0px;
+          font-size: 12px;
+          color: $color-primary;
+        }
+      }
+      label {
+        pointer-events: none;
+        position: absolute;
+        font-weight: 500;
+        top: 0;
+        left: 0;
+        margin-top: 28px;
+        transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+      }
+
+      .password-eye {
+        display: flex;
+        position: absolute;
+        right: 0%;
+        color: $color-semi-secundary;
+        cursor: pointer;
+      }
+
+      .error {
+        justify-content: start;
+        color: $color-red;
+        position: absolute;
+        top: 56px;
+        font-size: 12px;
+      }
+    }
+
+    .conected {
+      gap: 8px;
+      display: flex;
+
+      input {
+        width: 1.3em;
+        height: 1.3em;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:checked {
+          transition: 0.2s;
+          background-color: $color-primary;
+        }
+      }
+    }
+    a {
+      color: $color-primary;
+      text-align: center;
+    }
+    span {
+      font-size: 12px;
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      border: none;
+      padding: 10px 35px;
+      border-radius: 48px;
+      background: #34baab;
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 400;
+      color: $color-white;
+      cursor: pointer;
+      transition: 0.4s;
+
+      &:hover {
+        background-color: $color-darker;
+        transition: 0.4s;
+      }
+
+      &:disabled {
+        background-color: $color-semi-secundary;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

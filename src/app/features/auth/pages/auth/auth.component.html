@@ -1,0 +1,21 @@
+<main class="auth">
+  <app-top-bar-auth></app-top-bar-auth>
+  <div class="content">
+    <div class="left-content">
+      <app-login-register-button-swap
+        [activeButton]="activeButton"
+        (activeButtonChange)="activeButton = $event"
+      >
+      </app-login-register-button-swap>
+      <app-content-auth [activeButton]="activeButton"></app-content-auth>
+    </div>
+    <div class="right-content">
+      <h2>A jornada do cuidado é contínua.</h2>
+      <app-auth-person></app-auth-person>
+      <h4>
+        Juntos na busca por mais qualidade de vida. Cadastre-se e comece seu
+        acompanhamento.
+      </h4>
+    </div>
+  </div>
+</main>
