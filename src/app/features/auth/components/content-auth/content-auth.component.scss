@@ -6,8 +6,8 @@
     flex-direction: column;
     gap: 24px;
     transition: transform 1s ease;
-    height: 452px;
-    position: relative;
+    height: 360px;
+    justify-content: center;
 
     &.hidden {
       display: flex;

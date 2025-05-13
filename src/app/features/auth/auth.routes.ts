@@ -8,13 +8,13 @@ export const AUTH_ROUTES: Routes = [
     children: [
       {
         path: 'login',
-        title: 'Login',
+        title: 'HealthTrack - Login',
         component: AuthComponent,
         data: { activeButton: 1 },
       },
       {
         path: 'register',
-        title: 'Cadastro',
+        title: 'HealthTrack - Cadastro',
         component: AuthComponent,
         data: { activeButton: 2 },
       },

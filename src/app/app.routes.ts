@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { LayoutComponent } from './core/layout/layout.component';
+import { HomeComponent } from './core/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    loadComponent: () => import('./app.component').then((c) => c.AppComponent),
+    title: 'HealthTrack',
+    component: LayoutComponent,
+    children: [{ path: '', component: HomeComponent }],
   },
   {
     path: 'auth',

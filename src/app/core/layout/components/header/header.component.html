@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="logo-container">
+    <a routerLink="/" class="logo-link">
+      <span class="logo-icon">🏥</span>
+      <span class="logo-text">Health Track</span>
+    </a>
+  </div>
+  <nav class="nav-container">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/metrics" class="nav-link">Métricas</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/profile" class="nav-link">Perfil</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="user-actions">
+    <button class="logout-btn" (click)="handleLogout()">
+      <span class="icon">🚪</span>
+      <span class="text">Sair</span>
+    </button>
+  </div>
+</header>

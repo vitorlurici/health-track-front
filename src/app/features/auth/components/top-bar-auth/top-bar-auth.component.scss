@@ -6,14 +6,16 @@
   align-items: center;
   padding-left: 108px;
 
-  .logo-auth {
-    gap: 12px;
-    a {
-      text-decoration: none;
+  a {
+    text-decoration: none;
+    .logo-auth {
       font-size: 36px;
       font-weight: 700;
-      cursor: pointer;
       color: $color-primary;
+      cursor: pointer;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
     }
   }
 }

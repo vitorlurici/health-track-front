@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-auth-person',
-  standalone: true,
+  selector: 'app-auth-icon',
   template: `
     <svg
       width="360px"
@@ -346,6 +345,5 @@ import { Component } from '@angular/core';
       />
     </svg>
   `,
-  styleUrls: ['./auth-person.component.scss'],
 })
-export class AuthPersonComponent {}
+export class AuthIconComponent {}

@@ -15,11 +15,9 @@ export class ContentAuthComponent {
 
   showPassword = false;
 
-  // Primeiro injetamos as dependências
   private fb = inject(FormBuilder);
   private authValidators = inject(AuthValidators);
 
-  // Depois declaramos os formulários
   registerForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
