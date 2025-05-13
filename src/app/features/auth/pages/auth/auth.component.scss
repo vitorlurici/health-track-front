@@ -1,0 +1,72 @@
+@import "../../../../../styles/variables.scss";
+
+.auth {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+
+  .content {
+    display: flex;
+    background-color: $color-grey-background;
+    align-items: center;
+    align-self: center;
+    padding: 40px 0px;
+    border-radius: 24px;
+
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: $color-semi-secundary;
+      overflow: hidden;
+      padding: 0px 108px;
+    }
+
+    .right-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0px 108px;
+      color: $color-semi-secundary;
+      text-align: center;
+      width: 640px;
+
+      h2 {
+        color: $color-secundary;
+        line-height: 1;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .auth {
+    gap: 80px;
+    .content {
+      width: 96%;
+      .left-content {
+        padding: 0px 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .auth {
+    .content {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+
+      .left-content {
+        padding: 0px;
+      }
+
+      .right-content {
+        display: none;
+      }
+    }
+  }
+}

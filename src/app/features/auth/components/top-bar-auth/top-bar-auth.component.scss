@@ -1,0 +1,28 @@
+@import "../../../../../styles/variables.scss";
+
+.top-bar {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding-left: 108px;
+
+  a {
+    text-decoration: none;
+    .logo-auth {
+      font-size: 36px;
+      font-weight: 700;
+      color: $color-primary;
+      cursor: pointer;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .top-bar {
+    justify-content: center;
+    padding-left: 0px;
+  }
+}

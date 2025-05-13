@@ -1,0 +1,16 @@
+<div class="top-login">
+  <button
+    [class.active-button]="activeButton === 1"
+    [class.login]="true"
+    (click)="setActiveButton(1)"
+  >
+    ENTRAR
+  </button>
+  <button
+    [class.active-button]="activeButton === 2"
+    [class.register]="true"
+    (click)="setActiveButton(2)"
+  >
+    CADASTRAR
+  </button>
+</div>
