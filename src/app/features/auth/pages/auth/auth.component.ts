@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
 import { TopBarAuthComponent } from '../../components/top-bar-auth/top-bar-auth.component';
 import { ContentAuthComponent } from '../../components/content-auth/content-auth.component';
 import { LoginRegisterButtonSwapComponent } from '../../components/login-register-button-swap/login-register-button-swap.component';
-import { AuthIconComponent } from '../../../../components/auth-icon.component';
+import { AuthIconComponent } from '../../../../shared/components/auth-icon.component';
 @Component({
   selector: 'app-auth',
   standalone: true,

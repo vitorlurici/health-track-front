@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LogoComponent } from '../../../../components/logo.component';
+import { LogoComponent } from '../../../../shared/components/logo.component';
 
 @Component({
   selector: 'app-top-bar-auth',
