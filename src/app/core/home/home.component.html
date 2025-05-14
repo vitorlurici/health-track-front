@@ -1,7 +1,80 @@
-<div class="app-container">
-  <h1>Bem-vindo ao Health Track</h1>
-  <div class="button-group">
-    <button (click)="navigateToLogin()">Login</button>
-    <button (click)="navigateToRegister()">Cadastro</button>
+<main class="home-container">
+  <div class="banner-container">
+    <div class="banner-content">
+      <h2>HealthTrack, seu cuidado em saúde na palma da mão</h2>
+      <div class="sub-title">
+        <span>
+          HealthTrack é um app para o tratamento do diabetes. Agora, com mais
+          funcionalidades para diversas condições crônicas. E o melhor,
+          totalmente gratuito para atingir o público mais importante:
+          <b>você.</b>
+        </span>
+        <h4>Comece hoje a elevar o nível e eficácia do seu tratamento.</h4>
+      </div>
+      <button (click)="navigateToRegister()">Cadastre-se já</button>
+    </div>
   </div>
-</div>
+  <div class="content-container">
+    <div class="users-container">
+      <div class="box">
+        <h3>Para pacientes</h3>
+        <span
+          >De forma fácil e prática, o HealthTrack oferece métodos para deixar o
+          dia a dia do paciente crônico mais fácil. Cálculo de doses e correção
+          para quem faz insulinoterapia, contagem de carboidratos, relatórios
+          completos para levar às consultas médicas, anotação de medição de
+          pressão arterial, diário de hipoglicemia e mais!</span
+        >
+        <button>Saiba mais</button>
+      </div>
+      <div class="box">
+        <h3>Para médicos</h3>
+        <span
+          >Médicos têm acesso aos prontuários de seus pacientes, facilitando as
+          alterações no método de tratar a condição, além de acompanhar de perto
+          a evolução de cada um dos pacientes que são usuários.</span
+        >
+        <button>Saiba mais</button>
+      </div>
+    </div>
+
+    <div class="blog-container">
+      <h1>Blog</h1>
+      <span
+        >Conteúdos para quem convive com diabetes, hipertensão, obesidade e mais
+        condições crônicas, sempre pautados em dados e informações científicas e
+        órgãos de saúde/profissionais sérios e confiáveis.</span
+      >
+      <div class="cards-container">
+        <div class="card">
+          <h1>IMAGEM</h1>
+          <div class="text">
+            <span
+              >Glicemia no verão: como cuidar da sua saúde e aproveitar o
+              Carnaval</span
+            >
+          </div>
+        </div>
+        <div class="card">
+          <h1>IMAGEM</h1>
+          <div class="text">
+            <span
+              >Cigarro eletrônico: o que é, quais seus malefícios e
+              consequências?</span
+            >
+          </div>
+        </div>
+        <div class="card">
+          <h1>IMAGEM</h1>
+          <div class="text">
+            <span
+              >Estudantes com Diabetes Tipo 1 podem usar celular nas
+              escolas</span
+            >
+          </div>
+        </div>
+      </div>
+      <button>Ir para Blog</button>
+    </div>
+  </div>
+</main>
