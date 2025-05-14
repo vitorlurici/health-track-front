@@ -96,9 +96,9 @@
       <label>Senha</label>
       <div class="password-eye" (click)="togglePasswordVisibility()">
         @if (showPassword) {
-        <i>👁️</i>
+        <eye-open-icon />
         } @else {
-        <i>👁️‍🗨️</i>
+        <eye-hidden-icon />
         }
       </div>
       @if (loginForm.get('password')?.invalid &&

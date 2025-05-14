@@ -37,7 +37,7 @@
         width: 100%;
         padding: 8px 0px;
         padding-right: 20px;
-        color: $color-secundary;
+        color: $color-dark;
         font-family: "Montserrat", sans-serif;
         font-weight: 500;
         font-size: 16px;
@@ -125,7 +125,7 @@
       border: none;
       padding: 10px 35px;
       border-radius: 48px;
-      background: #34baab;
+      background: $color-primary;
       font-family: Montserrat;
       font-size: 16px;
       font-weight: 400;
@@ -134,12 +134,13 @@
       transition: 0.4s;
 
       &:hover {
-        background-color: $color-darker;
+        background-color: $color-dark;
         transition: 0.4s;
       }
 
       &:disabled {
-        background-color: $color-semi-secundary;
+        background-color: $color-secundary;
+        color: $color-grey-background;
         cursor: not-allowed;
       }
     }
