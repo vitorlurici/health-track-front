@@ -2,11 +2,18 @@ import { Component, Input, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthValidators } from '../../auth.validators';
+import { EyeHiddenComponent } from '../eye-hidden.component';
+import { EyeOpenComponent } from '../eye-open.component';
 
 @Component({
   selector: 'app-content-auth',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    EyeHiddenComponent,
+    EyeOpenComponent,
+  ],
   templateUrl: './content-auth.component.html',
   styleUrls: ['./content-auth.component.scss'],
 })
