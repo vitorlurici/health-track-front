@@ -1,5 +1,9 @@
-<mat-toolbar class="dashboard-header">
-  <span style="margin-left: 8px;" class="">HealtTrack</span>
+<mat-toolbar class="dashboard-header d-flex justify-content-between">
+  <div>
+    <app-logo />
+      <span style="margin-left: 8px;" class="logo-text">HealtTrack</span>
+  </div>
+
 
   <button mat-icon-button aria-label="Sair">
     <mat-icon>logout</mat-icon>
@@ -7,20 +11,56 @@
 
 </mat-toolbar>
 
-<div class="dashboard-content">
-  <div class="card-container">
-    <mat-card class="dashboard-card">
-      <mat-card-header>
-        <mat-card-title>aaaa</mat-card-title>
-      </mat-card-header>
-      batata
-      <mat-card-content>
-        <p>aaaaa</p>
-      </mat-card-content>
-    </mat-card>
+<div class="dashboard-content p-5">
+  <div class="row">
+    <!-- Coluna esquerda: 1 card sozinho -->
+    <div class="col-7 d-flex justify-content-center">
+      <mat-card class="dashboard-card-1 shadow-lg">
+        <mat-card-header>
+          <mat-card-title>Ficou fácil monitorar sua saúde!</mat-card-title>
+        </mat-card-header>
+        <hr/>
+        <mat-card-content>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea officia eius harum distinctio ducimus, fuga nihil
+          perferendis totam et dicta velit hic enim iste doloremque. Maxime ut porro obcaecati totam?
+        </mat-card-content>
+        <img src="assets/images/patient-monitoring.jpeg" class="img-fluid m-0 rounded-bottom" style="max-height: 280px;">
+      </mat-card>
+    </div>
+
+    <!-- Coluna direita: 2 cards empilhados -->
+    <div class="col-5 align-items-center">
+      <div class="mb-4">
+        <mat-card class="dashboard-card-2 shadow-lg">
+          <mat-card-header>
+            <mat-card-title>Pacientes Diabéticos</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime odit consectetur optio, corporis, blanditiis aliquam, dolore voluptatum nihil 
+          </mat-card-content>
+          <button class="m-3 rounded-pill" style="background-color: #668284;" (click)="abrirDialog()">
+            Registrar niveis de glicose
+          </button>
+        </mat-card>
+      </div>
+      <div class="mb-4">
+        <mat-card class="dashboard-card-2 shadow-lg">
+          <mat-card-header>
+            <mat-card-title>Pacientes Hipertensos</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime odit consectetur optio, 
+          </mat-card-content>
+          <button 
+            class="m-3 rounded-pill" 
+            style="background-color: #668284;"
+            (click)="abrirDialog()">
+              Registrar niveis pressão
+          </button>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>
 
-<mat-toolbar color="accent" class="footer">
-  Rodapé - Informações adicionais
-</mat-toolbar>
+<app-footer></app-footer>

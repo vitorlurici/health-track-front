@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Registrar Níveis de Pressão</h2>
+
+<mat-dialog-content>
+  <form #form="ngForm">
+    <mat-form-field class="w-100">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" name="data" ngModel required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>Pressão (mmHg)</mat-label>
+      <input matInput type="number" name="pressao" ngModel required>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true">Salvar</button>
+</mat-dialog-actions>
+

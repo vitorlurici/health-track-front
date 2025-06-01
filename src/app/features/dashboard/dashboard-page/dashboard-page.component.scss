@@ -1,6 +1,26 @@
-
-
-
 .dashboard-header {
     background-color: #B9D7D9;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content {
+    min-width: 100%;
+    min-height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+        url(/assets/images/preenchendo-registro-medico.jpg) center/cover no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.dashboard-card-1 {
+    max-width: 380px;
+    background-color: #cdd4d2;
+}
+
+.dashboard-card-2 {
+    max-width: 300px;
+    background-color: #cdd4d2;
 }
