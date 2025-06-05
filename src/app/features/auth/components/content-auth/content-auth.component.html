@@ -5,9 +5,13 @@
     (ngSubmit)="onSubmitRegister()"
     [formGroup]="registerForm"
   >
+    @if (errorMessage) {
+    <div class="error-message">{{ errorMessage }}</div>
+    }
+
     <div class="float-label">
       <input type="text" placeholder="" formControlName="name" />
-      <label>Nome</label>
+      <label>Nome Completo</label>
       @if (registerForm.get('name')?.invalid &&
       registerForm.get('name')?.touched) {
       <span class="error">
@@ -17,6 +21,7 @@
       </span>
       }
     </div>
+
     <div class="float-label">
       <input type="email" placeholder="" formControlName="email" />
       <label>E-mail</label>
@@ -25,10 +30,11 @@
       <span class="error">
         @if (registerForm.get('email')?.errors?.['required']) { E-mail
         obrigatório } @else if (registerForm.get('email')?.errors?.['email']) {
-        Digite no formato {{ "'exemplo@email.com'" }} }
+        Digite um e-mail válido }
       </span>
       }
     </div>
+
     <div class="float-label">
       <input
         [type]="showPassword ? 'text' : 'password'"
@@ -54,10 +60,93 @@
       }
     </div>
 
+    <div class="float-label">
+      <input
+        type="text"
+        placeholder=""
+        formControlName="cpf"
+        (input)="formatCpf($event)"
+        maxlength="14"
+      />
+      <label>CPF</label>
+      @if (registerForm.get('cpf')?.invalid && registerForm.get('cpf')?.touched)
+      {
+      <span class="error">
+        @if (registerForm.get('cpf')?.errors?.['required']) { CPF obrigatório }
+        @else if (registerForm.get('cpf')?.errors?.['invalidCpf']) { CPF
+        inválido }
+      </span>
+      }
+    </div>
+
+    <div class="float-label">
+      <input type="tel" placeholder="" formControlName="phone" />
+      <label>Telefone</label>
+      @if (registerForm.get('phone')?.invalid &&
+      registerForm.get('phone')?.touched) {
+      <span class="error">
+        @if (registerForm.get('phone')?.errors?.['required']) { Telefone
+        obrigatório } @else if (registerForm.get('phone')?.errors?.['pattern'])
+        { Formato inválido (DD)XXXXX-XXXX }
+      </span>
+      }
+    </div>
+
+    <div class="float-label">
+      <input type="number" step="0.1" placeholder="" formControlName="weight" />
+      <label>Peso (kg)</label>
+      @if (registerForm.get('weight')?.invalid &&
+      registerForm.get('weight')?.touched) {
+      <span class="error">
+        @if (registerForm.get('weight')?.errors?.['required']) { Peso
+        obrigatório } @else if (registerForm.get('weight')?.errors?.['min']) {
+        Mínimo 30kg } @else if (registerForm.get('weight')?.errors?.['max']) {
+        Máximo 300kg }
+      </span>
+      }
+    </div>
+
+    <div class="float-label">
+      <input
+        type="number"
+        step="0.01"
+        placeholder=""
+        formControlName="height"
+      />
+      <label>Altura (m)</label>
+      @if (registerForm.get('height')?.invalid &&
+      registerForm.get('height')?.touched) {
+      <span class="error">
+        @if (registerForm.get('height')?.errors?.['required']) { Altura
+        obrigatória } @else if (registerForm.get('height')?.errors?.['min']) {
+        Mínimo 0.5m } @else if (registerForm.get('height')?.errors?.['max']) {
+        Máximo 2.5m }
+      </span>
+      }
+    </div>
+
+    <div class="float-label">
+      <input
+        type="date"
+        placeholder=""
+        formControlName="birth"
+        [max]="maxBirthDate"
+      />
+      <label>Data de Nascimento</label>
+      @if (registerForm.get('birth')?.invalid &&
+      registerForm.get('birth')?.touched) {
+      <span class="error">
+        @if (registerForm.get('birth')?.errors?.['required']) { Data de
+        nascimento obrigatória }
+      </span>
+      }
+    </div>
+
     <div class="conected">
       <input type="checkbox" formControlName="keepConnected" />
       <h4>Manter-me conectado</h4>
     </div>
+
     <span>
       Ao continuar, estou de acordo com os
       <a routerLink="/termos-e-privacidade">
@@ -65,8 +154,9 @@
       </a>
       da HealthTrack.
     </span>
-    <button type="submit" [disabled]="registerForm.invalid">
-      CONCORDAR E CADASTRAR
+
+    <button type="submit" [disabled]="registerForm.invalid || isLoading">
+      @if (isLoading) { Cadastrando... } @else { CONCORDAR E CADASTRAR }
     </button>
   </form>
 
@@ -76,6 +166,10 @@
     (ngSubmit)="onSubmitLogin()"
     [formGroup]="loginForm"
   >
+    @if (errorMessage) {
+    <div class="error-message">{{ errorMessage }}</div>
+    }
+
     <div class="float-label">
       <input type="email" placeholder="" formControlName="email" />
       <label>E-mail</label>
@@ -113,7 +207,9 @@
       <input type="checkbox" formControlName="keepConnected" />
       <h4>Manter-me conectado</h4>
     </div>
-    <button type="submit" [disabled]="loginForm.invalid">ENTRAR</button>
+    <button type="submit" [disabled]="loginForm.invalid || isLoading">
+      @if (isLoading) { Entrando... } @else { ENTRAR }
+    </button>
     <a routerLink="/forgot-password">Esqueceu sua senha?</a>
     <span>
       Ao continuar, estou de acordo com os
