@@ -1,0 +1,35 @@
+.registration-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+
+  mat-form-field {
+    flex: 1;
+  }
+}
+
+.button-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.no-records {
+  padding: 16px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}

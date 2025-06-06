@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <div class="header-content">
+    <div class="logo-container">
+      <app-logo (click)="navigateToDashboard()"></app-logo>
+    </div>
+
+    <div class="actions-container">
+      <button
+        mat-icon-button
+        aria-label="Perfil do usuário"
+        (click)="openProfile()"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Sair do sistema" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
