@@ -1,1 +1,278 @@
-<p>dashboard works!</p>
+<mat-tab-group>
+  <!-- Aba de Registro Diário -->
+  <mat-tab label="Registro Diário">
+    <mat-card class="registration-card">
+      <mat-card-header>
+        <mat-card-title>Registrar Pressão e Glicose</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (submit)="addRecord()">
+          <div class="form-row">
+            <mat-form-field>
+              <mat-label>Data</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                [(ngModel)]="newRecord.date"
+                name="date"
+                required
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker
+                #picker
+                [startAt]="newRecord.date"
+              ></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field>
+              <mat-label>Pressão Sistólica</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="newRecord.systolic"
+                name="systolic"
+                required
+              />
+              <span matSuffix>mmHg</span>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Pressão Diastólica</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="newRecord.diastolic"
+                name="diastolic"
+                required
+              />
+              <span matSuffix>mmHg</span>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field>
+              <mat-label>Glicose</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="newRecord.glucose"
+                name="glucose"
+                required
+              />
+              <span matSuffix>mg/dL</span>
+            </mat-form-field>
+          </div>
+
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit">
+              Registrar
+            </button>
+            <button mat-button type="button" (click)="resetForm()">
+              Limpar
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <!-- Aba de Acompanhamento Semanal -->
+  <mat-tab label="Acompanhamento Semanal">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Registros da Semana</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table
+          mat-table
+          [dataSource]="getWeeklyRecords()"
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Data</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.date | date : "dd/MM/yyyy" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="systolic">
+            <th mat-header-cell *matHeaderCellDef>Sistólica</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.systolic }} mmHg
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="diastolic">
+            <th mat-header-cell *matHeaderCellDef>Diastólica</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.diastolic }} mmHg
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="glucose">
+            <th mat-header-cell *matHeaderCellDef>Glicose</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.glucose }} mg/dL
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="editRecord(element, i)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteRecord(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <!-- Aba de Acompanhamento Mensal -->
+  <mat-tab label="Acompanhamento Mensal">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Registros do Mês</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table
+          mat-table
+          [dataSource]="getMonthlyRecords()"
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Data</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.date | date : "dd/MM/yyyy" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="systolic">
+            <th mat-header-cell *matHeaderCellDef>Sistólica</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.systolic }} mmHg
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="diastolic">
+            <th mat-header-cell *matHeaderCellDef>Diastólica</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.diastolic }} mmHg
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="glucose">
+            <th mat-header-cell *matHeaderCellDef>Glicose</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.glucose }} mg/dL
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="editRecord(element, i)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteRecord(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <!-- Aba de Acompanhamento Total -->
+  <mat-tab label="Acompanhamento Total">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Todos os Registros</mat-card-title>
+        <mat-card-subtitle
+          >Total: {{ records.length }} registros</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="records.length === 0" class="no-records">
+          Nenhum registro encontrado. Adicione seu primeiro registro na aba
+          "Registro Diário".
+        </div>
+
+        <div *ngIf="records.length > 0" class="table-container">
+          <table mat-table [dataSource]="records" class="mat-elevation-z8">
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Data</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.date | date : "dd/MM/yyyy" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="systolic">
+              <th mat-header-cell *matHeaderCellDef>Sistólica</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.systolic }} mmHg
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="diastolic">
+              <th mat-header-cell *matHeaderCellDef>Diastólica</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.diastolic }} mmHg
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="glucose">
+              <th mat-header-cell *matHeaderCellDef>Glicose</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.glucose }} mg/dL
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Ações</th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="editRecord(element, i)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteRecord(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LogoComponent } from '../../../../../shared/components/logo.component';
+import { AuthService } from '../../../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -18,13 +21,18 @@ import { LogoComponent } from '../../../../../shared/components/logo.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  private authService = inject(AuthService);
+  private router = inject(Router);
   openProfile() {
     console.log('Abrir perfil');
-    // Implemente a navegação para o perfil ou abra um modal
   }
 
-  logout() {
-    console.log('Logout');
-    // Implemente a lógica de logout aqui
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  navigateToDashboard() {
+    this.router.navigate(['/dashboard']);
   }
 }
