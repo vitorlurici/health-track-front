@@ -1,0 +1,26 @@
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 16px;
+}
+
+.actions-container {
+  display: flex;
+  gap: 8px;
+}
+
+.actions-container button {
+  color: white;
+}
