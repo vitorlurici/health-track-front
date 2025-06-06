@@ -44,9 +44,9 @@
       <label>Senha</label>
       <div class="password-eye" (click)="togglePasswordVisibility()">
         @if (showPassword) {
-        <i>👁️</i>
+        <eye-open-icon />
         } @else {
-        <i>👁️‍🗨️</i>
+        <eye-hidden-icon />
         }
       </div>
       @if (registerForm.get('password')?.invalid &&
@@ -80,7 +80,13 @@
     </div>
 
     <div class="float-label">
-      <input type="tel" placeholder="" formControlName="phone" />
+      <input
+        type="tel"
+        placeholder=""
+        formControlName="phone"
+        (input)="formatPhone($event)"
+        maxlength="14"
+      />
       <label>Telefone</label>
       @if (registerForm.get('phone')?.invalid &&
       registerForm.get('phone')?.touched) {
@@ -112,6 +118,7 @@
         step="0.01"
         placeholder=""
         formControlName="height"
+        maxlength="2.5"
       />
       <label>Altura (m)</label>
       @if (registerForm.get('height')?.invalid &&

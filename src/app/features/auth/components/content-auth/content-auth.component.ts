@@ -36,7 +36,7 @@ export class ContentAuthComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
     phone: [
       '',
-      [Validators.required, Validators.pattern(/^\d{2}\d{4,5}\d{4}$/)],
+      [Validators.required, Validators.pattern(/^\(\d{2}\)\d{4,5}-\d{4}$/)],
     ],
     weight: [
       '',
@@ -84,6 +84,26 @@ export class ContentAuthComponent {
     this.registerForm.patchValue(
       {
         cpf: value.substring(0, 14),
+      },
+      { emitEvent: false }
+    );
+  }
+  formatPhone(event: any): void {
+    let value = event.target.value.replace(/\D/g, '');
+
+    if (value.length > 0) {
+      value = value.substring(0, 0) + '(' + value.substring(0);
+    }
+    if (value.length > 3) {
+      value = value.substring(0, 3) + ')' + value.substring(3);
+    }
+    if (value.length > 9) {
+      value = value.substring(0, 9) + '-' + value.substring(9);
+    }
+
+    this.registerForm.patchValue(
+      {
+        phone: value.substring(0, 14),
       },
       { emitEvent: false }
     );
