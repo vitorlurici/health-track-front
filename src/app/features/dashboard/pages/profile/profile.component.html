@@ -1,0 +1,100 @@
+<div class="profile-edit-container">
+  <h2>Editar Perfil</h2>
+
+  @if (errorMessage) {
+  <div class="error-message">{{ errorMessage }}</div>
+  }
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Nome Completo</label>
+      <input type="text" formControlName="name" />
+      @if (profileForm.get('name')?.invalid && profileForm.get('name')?.touched)
+      {
+      <div class="error-message">
+        @if (profileForm.get('name')?.errors?.['required']) { Nome obrigatório }
+        @else if (profileForm.get('name')?.errors?.['minlength']) { Mínimo 3
+        caracteres }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Data de Nascimento</label>
+      <input type="date" formControlName="birth" [max]="maxBirthDate" />
+      @if (profileForm.get('birth')?.invalid &&
+      profileForm.get('birth')?.touched) {
+      <div class="error-message">Data de nascimento obrigatória</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Telefone</label>
+      <input
+        type="tel"
+        formControlName="phone"
+        (input)="formatPhone($event)"
+        maxlength="14"
+      />
+      @if (profileForm.get('phone')?.invalid &&
+      profileForm.get('phone')?.touched) {
+      <div class="error-message">
+        @if (profileForm.get('phone')?.errors?.['required']) { Telefone
+        obrigatório } @else if (profileForm.get('phone')?.errors?.['pattern']) {
+        Formato inválido (DD)XXXXX-XXXX }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Peso (kg)</label>
+      <input type="number" step="0.1" formControlName="weight" />
+      @if (profileForm.get('weight')?.invalid &&
+      profileForm.get('weight')?.touched) {
+      <div class="error-message">
+        @if (profileForm.get('weight')?.errors?.['required']) { Peso obrigatório
+        } @else if (profileForm.get('weight')?.errors?.['min']) { Mínimo 30kg }
+        @else if (profileForm.get('weight')?.errors?.['max']) { Máximo 300kg }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Altura (m)</label>
+      <input type="number" step="0.01" formControlName="height" />
+      @if (profileForm.get('height')?.invalid &&
+      profileForm.get('height')?.touched) {
+      <div class="error-message">
+        @if (profileForm.get('height')?.errors?.['required']) { Altura
+        obrigatória } @else if (profileForm.get('height')?.errors?.['min']) {
+        Mínimo 1m } @else if (profileForm.get('height')?.errors?.['max']) {
+        Máximo 2.5m }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>CPF</label>
+      <input
+        type="text"
+        formControlName="cpf"
+        (input)="formatCpf($event)"
+        maxlength="14"
+      />
+      @if (profileForm.get('cpf')?.invalid && profileForm.get('cpf')?.touched) {
+      <div class="error-message">
+        @if (profileForm.get('cpf')?.errors?.['required']) { CPF obrigatório }
+        @else if (profileForm.get('cpf')?.errors?.['invalidCpf']) { CPF inválido
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="profileForm.invalid || isLoading">
+        @if (isLoading) { Salvando... } @else { Salvar Alterações }
+      </button>
+      <button type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

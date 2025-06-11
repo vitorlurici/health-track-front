@@ -4,7 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LogoComponent } from '../../../../../shared/components/logo.component';
-import { AuthService } from '../../../../auth/auth.service';
+import { AuthService } from '../../../../../core/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ export class HeaderComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   openProfile() {
-    console.log('Abrir perfil');
+    this.router.navigate(['/dashboard/profile']);
   }
 
   logout(): void {

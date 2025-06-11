@@ -1,10 +1,10 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthValidators } from '../../auth.validators';
+import { AuthValidators } from '../../../../core/validators/auth.validators';
 import { EyeHiddenComponent } from '../eye-hidden.component';
 import { EyeOpenComponent } from '../eye-open.component';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-content-auth',
