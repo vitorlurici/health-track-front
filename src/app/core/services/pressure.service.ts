@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs';
+import {
+  PressureRegistrationDTO,
+  PressureResponseDTO,
+} from '../models/pressure.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,27 +11,29 @@ import { Observable } from 'rxjs';
 export class PressureService {
   constructor(private api: ApiService) {}
 
-  getAllPressures(): Observable<any> {
-    return this.api.get('/pressure');
+  registerPressure(data: PressureRegistrationDTO) {
+    return this.api.post('pressure', data);
   }
 
-  getPressureById(id: string): Observable<any> {
-    return this.api.get(`/pressure/${id}`);
+  getPressureById(id: number) {
+    return this.api.get(`pressure/${id}`);
   }
 
-  createPressure(pressureData: any): Observable<any> {
-    return this.api.post('/pressure', pressureData);
+  getAllPressure() {
+    return this.api.get('pressure');
   }
 
-  updatePressure(id: string, pressureData: any): Observable<any> {
-    return this.api.put('/pressure', id, pressureData);
+  updatePressure(id: number, data: PressureRegistrationDTO) {
+    return this.api.put(`pressure/${id}`, data);
   }
 
-  deletePressure(id: string): Observable<any> {
-    return this.api.delete('/pressure', id);
+  deletePressure(id: number) {
+    return this.api.delete(`pressure/${id}`);
   }
 
-  getPressuresByDate(initialDate: string, endDate: string): Observable<any> {
-    return this.api.getByDate('/pressure', initialDate, endDate);
+  getPressureByDate(initialDate: string, endDate: string) {
+    return this.api.get(
+      `pressure/find-by-date?initialDate=${initialDate}&endDate=${endDate}`
+    );
   }
 }

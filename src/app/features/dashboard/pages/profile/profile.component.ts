@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
 
   isLoading = false;
   errorMessage: string | null = null;
+  successMessage: string | null = null;
   maxBirthDate: string;
 
   constructor(
@@ -60,18 +61,25 @@ export class ProfileComponent implements OnInit {
       next: (patient) => {
         this.profileForm.patchValue({
           name: patient.name,
-          birth: patient.birth,
+          birth: patient.birth
+            ? new Date(patient.birth).toISOString().split('T')[0]
+            : '',
           phone: patient.phone,
           weight: patient.weight,
           height: patient.height,
           cpf: patient.cpf,
         });
-        this.isLoading = false;
       },
       error: (error) => {
-        this.isLoading = false;
-        this.errorMessage = 'Erro ao carregar dados do paciente';
+        if (error.status === 404) {
+          this.errorMessage = 'Paciente não encontrado';
+        } else if (error.status === 403) {
+          this.errorMessage = 'Acesso não autorizado';
+        } else {
+          this.errorMessage = 'Erro ao carregar dados';
+        }
       },
+      complete: () => (this.isLoading = false),
     });
   }
 
@@ -94,6 +102,20 @@ export class ProfileComponent implements OnInit {
       },
       { emitEvent: false }
     );
+  }
+
+  formatBirthDate(dateString: string): string {
+    if (!dateString) return '';
+
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return dateString;
+      }
+      return date.toISOString().split('T')[0];
+    } catch {
+      return dateString;
+    }
   }
 
   formatPhone(event: any): void {
@@ -123,6 +145,7 @@ export class ProfileComponent implements OnInit {
 
     this.isLoading = true;
     this.errorMessage = null;
+    this.successMessage = null;
 
     const formValue = this.profileForm.value;
     const patientData = {
@@ -146,7 +169,14 @@ export class ProfileComponent implements OnInit {
           user.cpf = patientData.cpf;
           localStorage.setItem('user', JSON.stringify(user));
         }
-        this.router.navigate(['/dashboard']);
+
+        this.isLoading = false;
+        this.successMessage = 'Dados salvos com sucesso!';
+
+        setTimeout(() => {
+          this.successMessage = null;
+          this.router.navigate(['/dashboard']);
+        }, 3000);
       },
       error: (error) => {
         console.error('Update error:', error);

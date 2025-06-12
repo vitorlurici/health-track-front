@@ -1,3 +1,5 @@
+@import "../../../../../styles/variables.scss";
+
 .profile-edit-container {
   max-width: 600px;
   margin: 2rem auto;
@@ -8,7 +10,7 @@
 
   h2 {
     margin-bottom: 1.5rem;
-    color: #333;
+    color: $color-dark;
     text-align: center;
   }
 
@@ -30,7 +32,7 @@
 
       &:focus {
         outline: none;
-        border-color: #4a90e2;
+        border-color: $color-dark;
       }
     }
 
@@ -56,11 +58,11 @@
       transition: background-color 0.2s;
 
       &[type="submit"] {
-        background-color: #4a90e2;
+        background-color: $color-green;
         color: white;
 
         &:hover {
-          background-color: #357ab8;
+          background-color: $color-primary;
         }
 
         &:disabled {
@@ -81,8 +83,17 @@
   }
 
   .error-message {
-    background-color: #ffebee;
-    color: #e74c3c;
+    background-color: $color-grey-background;
+    color: $color-red;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .success-message {
+    background-color: $color-grey-background;
+    color: $color-green;
     padding: 1rem;
     border-radius: 4px;
     margin-bottom: 1.5rem;

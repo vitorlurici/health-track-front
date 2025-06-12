@@ -3,8 +3,9 @@
 
   @if (errorMessage) {
   <div class="error-message">{{ errorMessage }}</div>
+  } @if (successMessage) {
+  <div class="success-message">{{ successMessage }}</div>
   }
-
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Nome Completo</label>

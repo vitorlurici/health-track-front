@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs';
+import {
+  BloodGlucoseRegistrationDTO,
+  BloodGlucoseResponseDTO,
+} from '../models/glucose.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,27 +11,29 @@ import { Observable } from 'rxjs';
 export class GlucoseService {
   constructor(private api: ApiService) {}
 
-  getAllGlucose(): Observable<any> {
-    return this.api.get('/glucose');
+  registerGlucose(data: BloodGlucoseRegistrationDTO) {
+    return this.api.post('glucose', data);
   }
 
-  getGlucoseById(id: string): Observable<any> {
-    return this.api.get(`/glucose/${id}`);
+  getGlucoseById(id: number) {
+    return this.api.get(`glucose/${id}`);
   }
 
-  createGlucose(glucoseData: any): Observable<any> {
-    return this.api.post('/glucose', glucoseData);
+  getAllGlucose() {
+    return this.api.get('glucose');
   }
 
-  updateGlucose(id: string, glucoseData: any): Observable<any> {
-    return this.api.put('/glucose', id, glucoseData);
+  updateGlucose(id: number, data: BloodGlucoseRegistrationDTO) {
+    return this.api.put(`glucose/${id}`, data);
   }
 
-  deleteGlucose(id: string): Observable<any> {
-    return this.api.delete('/glucose', id);
+  deleteGlucose(id: number) {
+    return this.api.delete(`glucose/${id}`);
   }
 
-  getGlucoseByDate(initialDate: string, endDate: string): Observable<any> {
-    return this.api.getByDate('/glucose', initialDate, endDate);
+  getGlucoseByDate(initialDate: string, endDate: string) {
+    return this.api.get(
+      `glucose/find-by-date?initialDate=${initialDate}&endDate=${endDate}`
+    );
   }
 }

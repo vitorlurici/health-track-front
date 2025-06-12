@@ -51,7 +51,6 @@ export class AuthService {
       .pipe(
         tap((response) => {
           if (this.isBrowser()) {
-            console.log('Login response:', response);
             localStorage.setItem('token', response.accessToken);
             localStorage.setItem('refreshToken', response.refreshToken);
             localStorage.setItem(
@@ -61,7 +60,6 @@ export class AuthService {
                 email: response.username,
               })
             );
-            console.log('Token stored:', localStorage.getItem('token'));
           }
         })
       );
