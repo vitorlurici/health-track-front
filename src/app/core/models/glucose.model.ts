@@ -1,19 +1,14 @@
-export interface BloodGlucose {
-  id: number;
-  glucoseValue: number;
-  measurementTime: string;
-  context: string;
+export enum MeasurementContext {
+  FASTING = 'JEJUM',
+  PRE_PRANDIAL = 'PRÉ-PRANDIAL',
+  POST_PRANDIAL = 'PÓS-PRANDIAL',
+  BEFORE_SLEEP = 'ANTES DE DORMIR',
+  OTHER = 'OUTRO',
 }
 
-export interface BloodGlucoseRegistrationDTO {
+export interface Glucose {
+  id?: number;
   glucoseValue: number;
-  measurementTime: string;
-  context: string;
-}
-
-export interface BloodGlucoseResponseDTO {
-  id: number;
-  glucoseValue: number;
-  measurementTime: string;
-  context: string;
+  context: MeasurementContext;
+  measurementTime: Date;
 }

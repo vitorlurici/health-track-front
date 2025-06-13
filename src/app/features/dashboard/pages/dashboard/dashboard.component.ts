@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { PressureRegisterComponent } from './components/pressure-register/pressure-register.component';
+import { GlucoseRegisterComponent } from './components/glucose-register/glucose-register.component';
+import { ChartsComponent } from './components/charts/charts.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,17 +11,15 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    RouterModule,
+    MatTabsModule,
+    MatCardModule,
+    PressureRegisterComponent,
+    GlucoseRegisterComponent,
+    ChartsComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  title = 'Chronic Disease Monitor';
-  isSidenavOpen = false;
+  selectedTabIndex = 0;
 }

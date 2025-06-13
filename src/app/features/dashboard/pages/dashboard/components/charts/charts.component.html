@@ -1,0 +1,56 @@
+<mat-card class="charts-card">
+  <mat-card-header>
+    <mat-card-title>Acompanhamento</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="time-range-selector">
+      <button
+        mat-button
+        (click)="onTimeRangeChange('week')"
+        [class.active]="selectedTimeRange === 'week'"
+      >
+        Semanal
+      </button>
+      <button
+        mat-button
+        (click)="onTimeRangeChange('month')"
+        [class.active]="selectedTimeRange === 'month'"
+      >
+        Mensal
+      </button>
+      <button
+        mat-button
+        (click)="onTimeRangeChange('all')"
+        [class.active]="selectedTimeRange === 'all'"
+      >
+        Total
+      </button>
+    </div>
+
+    <mat-tab-group>
+      <mat-tab label="Pressão Arterial">
+        <div class="chart-container">
+          <canvas
+            baseChart
+            [data]="pressureChartData"
+            [options]="pressureChartOptions"
+            type="line"
+          >
+          </canvas>
+        </div>
+      </mat-tab>
+      <mat-tab label="Glicose">
+        <div class="chart-container">
+          <canvas
+            baseChart
+            [data]="glucoseChartData"
+            [options]="glucoseChartOptions"
+            type="line"
+          >
+          </canvas>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

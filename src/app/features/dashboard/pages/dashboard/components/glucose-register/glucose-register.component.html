@@ -1,0 +1,56 @@
+<form [formGroup]="glucoseForm" (ngSubmit)="onSubmit()" class="glucose-form">
+  <h3>Registrar Glicose</h3>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Valor da Glicose (mg/dL)</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="glucoseValue"
+      placeholder="Ex: 95"
+    />
+    <mat-error *ngIf="glucoseForm.get('glucoseValue')?.hasError('required')"
+      >Campo obrigatório</mat-error
+    >
+    <mat-error
+      *ngIf="
+        glucoseForm.get('glucoseValue')?.hasError('min') ||
+        glucoseForm.get('glucoseValue')?.hasError('max')
+      "
+    >
+      Valor deve estar entre 30 e 500
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Contexto da Medição</mat-label>
+    <mat-select formControlName="context">
+      <mat-option *ngFor="let context of measurementContexts" [value]="context">
+        {{ context }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="glucoseForm.get('context')?.hasError('required')"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Data e Hora</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="measurementTime"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="glucoseForm.invalid"
+  >
+    Registrar Glicose
+  </button>
+</form>

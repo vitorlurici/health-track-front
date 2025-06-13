@@ -1,0 +1,18 @@
+.charts-card {
+  max-width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+
+  .time-range-selector {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+  }
+}

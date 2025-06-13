@@ -1,0 +1,86 @@
+<form [formGroup]="pressureForm" (ngSubmit)="onSubmit()" class="pressure-form">
+  <h3>Registrar Pressão Arterial</h3>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Sistólica (mmHg)</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="systolic"
+      placeholder="Ex: 120"
+    />
+    <mat-error *ngIf="pressureForm.get('systolic')?.hasError('required')"
+      >Campo obrigatório</mat-error
+    >
+    <mat-error
+      *ngIf="
+        pressureForm.get('systolic')?.hasError('min') ||
+        pressureForm.get('systolic')?.hasError('max')
+      "
+    >
+      Valor deve estar entre 50 e 250
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Diastólica (mmHg)</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="diastolic"
+      placeholder="Ex: 80"
+    />
+    <mat-error *ngIf="pressureForm.get('diastolic')?.hasError('required')"
+      >Campo obrigatório</mat-error
+    >
+    <mat-error
+      *ngIf="
+        pressureForm.get('diastolic')?.hasError('min') ||
+        pressureForm.get('diastolic')?.hasError('max')
+      "
+    >
+      Valor deve estar entre 30 e 150
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Batimentos Cardíacos (bpm)</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="heartbeat"
+      placeholder="Ex: 75"
+    />
+    <mat-error *ngIf="pressureForm.get('heartbeat')?.hasError('required')"
+      >Campo obrigatório</mat-error
+    >
+    <mat-error
+      *ngIf="
+        pressureForm.get('heartbeat')?.hasError('min') ||
+        pressureForm.get('heartbeat')?.hasError('max')
+      "
+    >
+      Valor deve estar entre 30 e 200
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Data e Hora</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="measurementTime"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="pressureForm.invalid"
+  >
+    Registrar Pressão
+  </button>
+</form>

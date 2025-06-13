@@ -1,39 +1,33 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
-import {
-  BloodGlucoseRegistrationDTO,
-  BloodGlucoseResponseDTO,
-} from '../models/glucose.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { Glucose } from '../models/glucose.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GlucoseService {
-  constructor(private api: ApiService) {}
+  private apiUrl = `${environment.apiUrl}/glucose`;
 
-  registerGlucose(data: BloodGlucoseRegistrationDTO) {
-    return this.api.post('glucose', data);
+  constructor(private http: HttpClient) {}
+
+  registerGlucose(glucose: Glucose): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, glucose);
   }
 
-  getGlucoseById(id: number) {
-    return this.api.get(`glucose/${id}`);
+  getGlucoseByDate(initialDate: Date, endDate: Date): Observable<Glucose[]> {
+    const formatDate = (date: Date) => date.toISOString().split('.')[0];
+
+    return this.http.get<Glucose[]>(`${this.apiUrl}/find-by-date`, {
+      params: {
+        initialDate: formatDate(initialDate),
+        endDate: formatDate(endDate),
+      },
+    });
   }
 
-  getAllGlucose() {
-    return this.api.get('glucose');
-  }
-
-  updateGlucose(id: number, data: BloodGlucoseRegistrationDTO) {
-    return this.api.put(`glucose/${id}`, data);
-  }
-
-  deleteGlucose(id: number) {
-    return this.api.delete(`glucose/${id}`);
-  }
-
-  getGlucoseByDate(initialDate: string, endDate: string) {
-    return this.api.get(
-      `glucose/find-by-date?initialDate=${initialDate}&endDate=${endDate}`
-    );
+  getAllGlucose(): Observable<Glucose[]> {
+    return this.http.get<Glucose[]>(this.apiUrl);
   }
 }
